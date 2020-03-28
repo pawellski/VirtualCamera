@@ -5,6 +5,8 @@
  */
 package camera;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,17 @@ public class Construction {
     
     public Construction(){
         lines3D = new ArrayList<>();
+    }
+    
+    public Construction(String adress){
+        try {
+            ReadFile readFile = new ReadFile(adress);
+            lines3D = readFile.load();
+        } catch (FileNotFoundException e) {
+            System.out.println("The file was not found!");
+        } catch (IOException e) {
+            System.out.println("Wrong format of file!");
+        }
     }
 
     public List<Line3D> getLines3D() {
