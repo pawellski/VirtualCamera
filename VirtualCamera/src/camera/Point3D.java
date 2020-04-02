@@ -14,13 +14,11 @@ public class Point3D {
     private double x;
     private double y;
     private double z;
-    private double w;
 
     public Point3D(double x, double y, double z) {
         this.x = x;
         this.y = y;
         this.z = z;
-        w = 1.0;
     }
 
     public double getX() {
