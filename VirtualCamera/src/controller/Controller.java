@@ -26,7 +26,7 @@ public class Controller {
 
     public void initialize() {
         prepareBackground();
-        camera = new Camera("src/resources/cube1.txt");
+        camera = new Camera("src/resources/picture.txt");
         camera.projectTo2D();
         camera.moveConstructionToCenter();
         draw();
@@ -38,50 +38,46 @@ public class Controller {
             String key = k.getCode().toString();
             switch (key) {
                 case "UP":
-                    System.out.println("up");
                     camera.moveUp();
                     break;
                 case "DOWN":
-                    System.out.println("down");
                     camera.moveDown();
                     break;
                 case "RIGHT":
-                    System.out.println("right");
                     camera.moveRight();
                     break;
                 case "LEFT":
-                    System.out.println("left");
                     camera.moveLeft();
                     break;
                 case "PERIOD":
-                    System.out.println(".");
+                    camera.rotateZ(1);
                     break;
                 case "COMMA":
-                    System.out.println(",");
+                    camera.rotateZ(-1);
                     break;
                 case "W":
-                    System.out.println("w");
+                    camera.rotateX(-1);
                     break;
                 case "S":
-                    System.out.println("s");
+                    camera.rotateX(1);
                     break;
                 case "A":
-                    System.out.println("a");
+                    camera.rotateY(1);
                     break;
                 case "D":
-                    System.out.println("d");
+                    camera.rotateY(-1);
                     break;
                 case "Z":
-                    System.out.println("z");
+                    camera.moveForward();
                     break;
                 case "X":
-                    System.out.println("x");
+                    camera.moveBackward();
                     break;
                 case "OPEN_BRACKET":
-                    System.out.println("[");
+                    camera.zoomIn();
                     break;
                 case "CLOSE_BRACKET":
-                    System.out.println("]");
+                    camera.zoomOut();
                     break;
                 default:
                     break;
@@ -98,20 +94,15 @@ public class Controller {
 
     private void prepareBackground() {
         GraphicsContext gc = viewport.getGraphicsContext2D();
-        gc.setFill(Color.WHITE);
-        gc.fillRect(0, 0, 1200, 600);
-        gc.beginPath();
-        gc.moveTo(0, 0);
-        gc.lineTo(1200, 0);
-        gc.lineTo(1200, 600);
-        gc.lineTo(0, 600);
-        gc.lineTo(0, 0);
-        gc.stroke();
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, 800, 800);
     }
 
     private void draw() {
         prepareBackground();
         GraphicsContext gc = viewport.getGraphicsContext2D();
+        gc.setStroke(Color.WHITE);
+        gc.setLineWidth(1.8);
         gc.beginPath();
         for (Line2D line : camera.getConstruction().getLines2D()) {
             gc.moveTo(line.getPoint1().getX(), line.getPoint1().getY());
