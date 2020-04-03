@@ -97,8 +97,6 @@ public class Camera {
 
     public void rotateZ(int sign) {
         double x, y;
-        System.out.println(Math.cos(Math.toRadians(ROTATION_ANGLE * sign)));
-        System.out.println(Math.sin(Math.toRadians(ROTATION_ANGLE * sign)));
         for (Line3D l : construction.getLines3D()) {
             x = l.getPoint1().getX();
             y = l.getPoint1().getY();
